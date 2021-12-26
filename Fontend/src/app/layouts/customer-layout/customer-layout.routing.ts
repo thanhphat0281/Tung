@@ -1,0 +1,53 @@
+import { Routes } from '@angular/router';
+import { HomeComponent } from 'src/app/views/customer/home/home.component';
+import { CakeCategoryComponent } from 'src/app/views/customer/cake-category/cake-category.component';
+import { CakeDetailComponent } from 'src/app/views/customer/cake-detail/cake-detail.component';
+import { MyAccountComponent } from 'src/app/auth/my-account/my-account.component';
+import { LoginComponent} from '../../auth/login/login.component';
+import { RegisterComponent} from '../../auth/register/register.component';
+import { LostPasswordComponent } from 'src/app/views/customer/lost-password/lost-password.component';
+import { CakeCartComponent } from 'src/app/views/customer/cake-cart/cake-cart.component';
+import { AboutUsComponent } from 'src/app/views/customer/about-us/about-us.component';
+import { AccountProfileComponent } from 'src/app/views/customer/account-profile/account-profile.component';
+import { OrderHistoryComponent } from 'src/app/views/customer/order-history/order-history.component';
+import { CakeCartCusInfoComponent } from 'src/app/views/customer/cake-cart-cus-info/cake-cart-cus-info.component';
+import { CakeCartPaymentComponent } from 'src/app/views/customer/cake-cart-payment/cake-cart-payment.component';
+import { ProfileDetailComponent } from 'src/app/views/customer/profile-detail/profile-detail.component';
+import { ProfileDetailEditComponent } from 'src/app/views/customer/profile-detail-edit/profile-detail-edit.component';
+import { ProfileChangePasswordComponent } from 'src/app/views/customer/profile-change-password/profile-change-password.component';
+import { ManageOrderComponent } from 'src/app/views/admin/manage-order/manage-order.component';
+import { ProfileAccountSocialComponent } from 'src/app/views/customer/profile-account-social/profile-account-social.component';
+import { DiscountCodeComponent } from 'src/app/views/customer/discount-code/discount-code.component';
+import { ConfirmEmailComponent } from 'src/app/views/customer/confirm-email/confirm-email.component';
+import { FavoriteComponent } from 'src/app/views/customer/favorite/favorite.component';
+import { SaleComponent } from 'src/app/views/customer/sale/sale.component';
+import { PageShowListComponent } from 'src/app/views/customer/page-show-list/page-show-list.component';
+import { Navlv2Component } from 'src/app/views/customer/navlv2/navlv2.component';
+import { Page404NotFoundComponent } from 'src/app/views/customer/page404-not-found/page404-not-found.component';
+export const CustomerLayoutRoutes: Routes = [
+    { path: 'homePage', component: HomeComponent },
+    { path: 'cakesCategory/:id', component: CakeCategoryComponent },
+    { path: 'cakeDetail/:id', component: CakeDetailComponent },
+    { path: 'account', component: MyAccountComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
+    { path: 'lostPassword', component: LostPasswordComponent },
+    { path: 'cartCake', component: CakeCartComponent },
+    { path: 'aboutUs/:id', component: AboutUsComponent },
+    { path: 'accountProfile', component: ProfileDetailComponent },
+    { path: 'accountProfileSocial', component: ProfileAccountSocialComponent },
+    { path: 'accountProfileEdit/:id', component: ProfileDetailEditComponent },
+    { path: 'changePassword/:id', component: ProfileChangePasswordComponent },
+    { path: 'orderHistory', component: OrderHistoryComponent },
+    { path: 'shipping', component: CakeCartCusInfoComponent },
+    { path: 'favorites', component: FavoriteComponent },
+    { path: 'sales', component: SaleComponent },
+    { path: 'payment/:customer_id', component: CakeCartPaymentComponent },
+    // { path: 'manageOrder', component: ManageOrderComponent },
+    { path: 'profile', component: AccountProfileComponent },
+    { path: 'discountCode', component: DiscountCodeComponent },
+    { path: 'confirm-account/:token', component: ConfirmEmailComponent },
+    { path: 'filter/:name/:id', component: PageShowListComponent },
+    { path: 'rountlv2/:name/:id', component: Navlv2Component },
+    { path: '404Notfound', component: Page404NotFoundComponent }
+];

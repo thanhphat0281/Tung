@@ -1,0 +1,318 @@
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+
+<body class="archive tax-product_cat term-personal-finance term-13 woocommerce woocommerce-page wpb-js-composer 
+js-comp-ver-4.9.2 vc_responsive ">
+    <div class="wrapper">
+        <!-- //MAIN NAVIGATION -->
+        <!-- <div class="product-header bks-breadcrumb">
+            <div class="container">
+                <h1>DANH SÁCH MÃ KHUYẾN MÃI</h1>
+            </div>
+        </div> -->
+        <div class="container padding-40-v" style="width:none">
+            <div id="main-content" class="col-xs-12 col-sm-9 right">
+                <div id="container">
+
+                    <div id="content" role="main">
+                        <div><span style="font-size:22px;padding:15px ;">Danh Sách Yêu Thích</span>
+
+                        </div>
+
+                        <div class="products clearfix" id="categorySach">
+                            <div class="item col-xs-12 col-sm-4 post-78 product type-product
+                                    status-publish has-post-thumbnail product_cat-budgeting-and-finance 
+                                    product_cat-creative-thinking product_cat-personal-finance product_cat-romance last
+                                     instock sale featured shipping-taxable purchasable product-type-simple"
+                                *ngFor="let item of listCakeFavorite | paginate: { id:'1',itemsPerPage: 6,currentPage: p1 }">
+                                <div class="product-wrap">
+                                    <span *ngIf="item.sale!=0" class="on-sale">-{{item.sale}}%</span>
+                                    <div class="product-image">
+                                        <div class="catalog-image">
+                                            <button (click)="detailCake(item);"
+                                                style="background-color: transparent;border-color: transparent;">
+                                                <img width="207" height="265" src="{{item.imgCake}}"
+                                                    class="attachment-cakestore_product_thumb size-cakestore_product_thumb wp-post-image"
+                                                    alt="cake6" sizes="(max-width: 207px) 100vw, 207px" />
+                                                <div class="button yith-wcqv-button" data-product_id="78">
+                                                    <i class="fa fa-search"></i>
+                                                </div>
+                                            </button>
+                                        </div>
+
+                                        <div class="product-buttons">
+                                            <div class="add-to-cart-btn">
+                                                <a *ngIf="checkCountMax10" rel="nofollow" data-product_id="78"
+                                                    data-product_sku="" data-quantity="1" class="button"
+                                                    data-toggle="modal" data-target="#myModal"
+                                                    (mouseenter)="checkCountCartBeforeAdd(item)"
+                                                    (click)="addToCart(item)">Chọn mua</a>
+                                                <a *ngIf="!checkCountMax10" rel="nofollow" data-product_id="78"
+                                                    data-product_sku="" data-quantity="1" class="button"
+                                                    (mouseenter)="checkCountCartBeforeAdd(item)"
+                                                    (click)="addToCart(item)">Chọn mua</a>
+                                            </div>
+
+                                            <div class="yith-wcwl-add-to-wishlist add-to-wishlist-78">
+                                                <a rel="nofollow" data-product-id="78" data-product-type="simple"
+                                                    style="cursor:pointer;" (click)="favoriteCake(item._id)">
+                                                    <i *ngIf="!validateFavorite(item._id)" class="fa fa-heart"
+                                                        style="margin-left:40px;color:#FFF;margin-top: 20px;"></i>
+                                                    <i *ngIf="validateFavorite(item._id)" class="fa fa-heart"
+                                                        style="margin-left:40px;color: red;margin-top: 20px;"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end product-image -->
+                                    <!-- Sale -->
+                                    <div *ngIf="item.sale!=0" class="product-content">
+                                        <h4 class="product_title">
+                                            <div id="OverFlowNameCake" href="cakeDetail">{{item.nameCake}}</div>
+                                        </h4>
+                                        <span class="price">
+                                            <ins>
+                                                <span class="woocommerce-Price-amount amount">
+                                                    {{item.priceCake*(100-item.sale)/100 | currency:"VND"}}
+                                                </span>
+                                            </ins>
+
+                                            <del style="font-size: 12px">
+                                                <span class="woocommerce-Price-amount amount">
+                                                    {{item.priceCake | currency:"VND"}}
+                                                </span>
+                                            </del>
+                                        </span>
+                                    </div>
+                                    <!-- Don't Sale -->
+                                    <div *ngIf="item.sale==0" class="product-content">
+                                        <h4 class="product_title">
+                                            <div id="OverFlowNameCake" href="cakeDetail">{{item.nameCake}}</div>
+                                        </h4>
+                                        <span class="price">
+                                            <ins>
+                                                <span class="woocommerce-Price-amount amount">
+                                                    {{item.priceCake | currency:"VND"}}
+                                                </span>
+                                            </ins>
+                                        </span>
+                                    </div>
+                                    <!-- end product-content -->
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <pagination-controls style="float:right" id='1' (pageChange)="p1 = $event">
+                            </pagination-controls>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- main app container -->
+            <div id="shop-sidebar" class="sidebar col-xs-12 col-sm-3 left">
+                <style>
+                    #price-slider {
+                        width: 300px;
+                        height: 80px;
+                        font-size: 14px;
+                    }
+
+                    #price-slider input {
+                        width: 90px;
+                        display: inline-block;
+                        font-size: 12px;
+                    }
+
+                    #slider-range {
+                        position: relative;
+                        margin: auto;
+                        width: 250px;
+                        height: 13px;
+                        border: solid 1px black;
+                    }
+
+                    #slider-range .ui-slider-handle {
+                        position: absolute;
+                        width: 15px;
+                        height: 5px;
+                        margin-top: 2px;
+                        border: solid 1px black;
+                        cursor: pointer;
+                    }
+
+                    #slider-range .ui-slider-range {
+                        background: blue;
+                    }
+
+                    #slider-range .ui-corner-all {
+                        border-radius: 0px;
+                    }
+                </style>
+
+                <div id="woocommerce_product_categories-2" class="widget woocommerce widget_product_categories">
+                    <h3 class="widget-title">Tài Khoản</h3>
+                    <ul class="product-categories">
+                        <li class="cat-item cat-item-11">
+                            <a *ngIf="loginBy == 'loginbt'" (click)="moveToProfileDetail();">Thông Tin Tài Khoản</a>
+                            <a *ngIf="loginBy == 'loginSocial'" (click)="moveToProfileAccountSocial();">Thông Tin Tài
+                                Khoản</a>
+                            <a (click)="goToFavorite()">Sản Phẩm Yêu Thích</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="woocommerce_product_categories-2" class="widget woocommerce widget_product_categories">
+                    <h3 class="widget-title">Đơn Hàng</h3>
+                    <ul class="product-categories">
+                        <li class="cat-item cat-item-11">
+                            <a (click)="goToOrderHistory()">Lịch Sử Mua Hàng</a>
+                            <a (click)="goToDiscountCode()">Danh Sách Mã Khuyến Mãi</a>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back to Top -->
+        <div id="back-to-top" data-spy="affix" data-offset-top="300" class="back-to-top hidden-xs hidden-sm affix">
+            <button id="scrollToTopButton" class="btn btn-primary" title="Back to Top"><i
+                    class="fa fa-arrow-up"></i></button>
+        </div>
+        <!-- Back to Top -->
+    </div>
+    <!--  message alert -->
+    <div *ngIf="alertSucess" name="alertSucess" class="alert alert-success" role="alert"
+        style=" position: fixed;width: 50%;bottom: 0;left: 40px;z-index: 1;z-index: 1000001;">
+        {{alertMessage}}
+    </div>
+    <div *ngIf="alertFalse" name="alertFalse" class="alert alert-danger" role="alert"
+        style=" position: fixed;width: 50%;bottom: 0;left: 40px;z-index: 1;z-index: 1000001;">
+        {{alertMessage}}
+    </div>
+    <!--  message alert -->
+    <!-- modal add cake -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true" style="z-index: 1000000;">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-bottom-0">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color:black;font-size: 15px;">
+                        <b>Sản Phẩm <span style="color: black;">{{addACake}}</span> đã được Chọn Mua hàng của bạn</b>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </h5>
+
+                </div>
+                <div class="modal-body">
+
+                    <div class="d-flex justify-content-end" style="font-size: 15px;">
+                        <h5>Bạn có <b>{{TongCount}}</b> sản phẩm trong giỏ hàng</h5>
+                        <h5 style="margin-top: -5px;">Tổng tiền : <b
+                                style="color :#FE2E9A;font-size: 21px;">{{TongTien|currency:"VND"}}</b></h5>
+                    </div>
+
+                    <div class="col mb-2">
+                        <div class="row">
+                            <div class="col-sm-12  col-md-6">
+                                <button id="continue" class="btn btn-block btn-light " style="padding: 10px 16px;"
+                                    data-dismiss="modal" (click)="goToHome()">Tiếp tục mua hàng</button>
+                            </div>
+                            <div class="col-sm-12 col-md-6 text-right">
+                                <button class="btn btn-lg btn-block btn-success text-uppercase" type="button"
+                                    data-dismiss="modal" (click)="goToCartCake()">Giỏ hàng </button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <h4>Có thể bạn sẽ thích</h4>
+                    <div class="modal-footer border-top-0 d-flex justify-content-between" id="scroll">
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-3 product type-product
+                        status-publish has-post-thumbnail product_cat-budgeting-and-finance 
+                        product_cat-creative-thinking product_cat-personal-finance product_cat-romance last
+                         instock sale featured shipping-taxable purchasable product-type-simple" *ngFor="let item of CakeByCategory  |
+                        paginate: { itemsPerPage: 4,currentPage: p }">
+                                <div class="product-wrap" style="height: 270px;">
+                                    <span *ngIf="item.sale!=0" class="on-sale">-{{item.sale}}%</span>
+                                    <div class="product-image">
+                                        <div class="catalog-image">
+                                            <button (click)="clickGoToCakeDetail(item._id);" data-dismiss="modal"
+                                                style="background-color: transparent;border-color: transparent;">
+                                                <img width="169" height="169" src="{{item.imgCake}}"
+                                                    class="attachment-cakestore_product_thumb size-cakestore_product_thumb wp-post-image"
+                                                    alt="cake6" sizes="(max-width: 207px) 100vw, 207px" />
+                                                <div class="button yith-wcqv-button" data-product_id="78">
+                                                    <i class="fa fa-search"></i>
+                                                </div>
+                                            </button>
+                                        </div>
+
+                                        <div class="product-buttons">
+                                            <div class="add-to-cart-btn" id="add-to-cart-btn">
+                                                <a rel="nofollow" data-product_id="78" data-product_sku=""
+                                                    data-quantity="1" id="btnAddToCart_modal" class="button"
+                                                    (click)="addToCart(item)">Chọn mua</a>
+                                            </div>
+
+                                            <div class="yith-wcwl-add-to-wishlist add-to-wishlist-78">
+                                                <a rel="nofollow" data-product-id="78" data-product-type="simple"
+                                                    style="cursor:pointer;" (click)="favoriteCake(item._id)">
+                                                    <i *ngIf="!validateFavorite(item._id)" class="fa fa-heart"
+                                                        style="margin-right: 30px;color:#FFF;margin-top: 20px;"></i>
+                                                    <i *ngIf="validateFavorite(item._id)" class="fa fa-heart"
+                                                        style="margin-right: 30px;color: red;margin-top: 20px;"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end product-image -->
+                                    <!-- Sale -->
+                                    <div *ngIf="item.sale!=0" class="product-content">
+                                        <h4 class="product_title">
+                                            <div id="OverFlowNameCake" href="cakeDetail">{{item.nameCake}}</div>
+                                        </h4>
+                                        <span class="price">
+                                            <ins>
+                                                <span class="woocommerce-Price-amount amount">
+                                                    {{item.priceCake*(100-item.sale)/100 | currency:"VND"}}
+                                                </span>
+                                            </ins>
+
+                                            <del style="font-size: 12px">
+                                                <span class="woocommerce-Price-amount amount">
+                                                    {{item.priceCake | currency:"VND"}}
+                                                </span>
+                                            </del>
+                                        </span>
+                                    </div>
+                                    <!-- Don't Sale -->
+                                    <div *ngIf="item.sale==0" class="product-content">
+                                        <h4 class="product_title">
+                                            <div id="OverFlowNameCake" href="cakeDetail">{{item.nameCake}}</div>
+                                        </h4>
+                                        <span class="price">
+                                            <ins>
+                                                <span class="woocommerce-Price-amount amount">
+                                                    {{item.priceCake | currency:"VND"}}
+                                                </span>
+                                            </ins>
+                                        </span>
+                                    </div>
+                                    <!-- end product-content -->
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div>
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>

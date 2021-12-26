@@ -1,0 +1,100 @@
+
+<head>
+    <meta charset="utf-8" />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  </head>
+  <body class="">
+    <div class="wrapper ">
+     
+      <div class="main-panel" style="font-size: 13px;">
+        <!-- Navbar -->
+        <app-header></app-header>
+<div class="content" style="background-color: #EEEEEE;">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header card-header-primary">
+              <h4 class="card-title" style="font-size: 13px;">Thông Tin Bánh</h4>
+            </div>
+            <div class="card-body">                
+                    <div class="col-sm-4">
+                        <div class="input-field col s12" >
+
+                            <img alt="" src="{{ cakeService.selectedCake.imgCake }}" style="width: 100%;height: 100%;">
+
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        
+                        <div class="row" style="padding-bottom: 10px;">
+                            <div class="input-field col s12"style="padding: 0px;">
+                                <label>Tên Bánh</label>
+                                <input class="form-control" type="text" name="nameCake" 
+                                value="{{cakeService.selectedCake?.nameCake}}" disabled>
+
+                            </div>
+                        </div>
+                        <div class="row"style="padding-bottom: 10px;">
+                            <div class="col-sm-4" style="padding: 0px;">
+                                <label>Loại Bánh</label>&nbsp;
+                               
+                                <div class="id_100">
+                                    <input class="form-control" type="text" 
+                                     value="{{categoryService.category?.nameCategory}}" disabled>
+                                </div>
+                            </div>
+
+                          
+
+                        </div>
+
+                        <div class="row"style="padding-bottom: 10px;">
+                            <div class="col-sm-4" style="padding: 0px;">
+                                <label>Đơn Giá</label>
+                                <input class="form-control" type="text"  value="{{cakeService.selectedCake?.priceCake | currency : 'VND'}}" disabled>
+
+                            </div>
+
+                            <div class="col-sm-4">
+                                <label>Giảm Giá</label>
+                                <div class="id_100">
+                                    <input class="form-control" type="text"  value="{{cakeService.selectedCake?.sale}} %" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row"style="padding-bottom: 10px;">
+                            <div class="input-field col s12">
+                                <label>Chi Tiết Bánh</label>
+                                <textarea class="form-control" rows="8" type="text" name="detailCake" disabled
+                                 #name="ngModel" [(ngModel)]="cakeService.selectedCake.detailCake" placeholder="Nhập Mô Tả Bánh"></textarea>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <button class="btn btn-primary" (click) = "updateCakeById(cakeService.selectedCake._id);"
+                                style="border-radius: 30px ; width: 100%;height: 50px;font-size: 13px;">Cập Nhật Thông Tin Bánh</button>
+                               
+                            </div>
+                            <div class="col-sm-6">
+                                <button class="btn btn-primary" type="button" (click)="cancel()" 
+                                style="border-radius: 30px; width: 100%;height: 50px;font-size: 13px;">Trở Về</button>
+                            </div>
+                           
+                        </div>
+                    </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+</div>
+</div>
+
+
+</body>
