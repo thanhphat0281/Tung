@@ -206,8 +206,8 @@ export class HomeComponent implements OnInit {
 		this.customOptions = {
 			loop: false,
 			mouseDrag: true,
-			touchDrag: false,
-			pullDrag: false,
+			touchDrag: true,
+			pullDrag: true,
 			dots: true,
 			navSpeed: 700,
 			nav: false,

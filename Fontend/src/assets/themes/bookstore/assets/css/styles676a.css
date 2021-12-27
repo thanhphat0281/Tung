@@ -1448,6 +1448,7 @@ j.social-icon:before {
     overflow: hidden;
     position: relative;
     padding-bottom: 20px;
+    margin-right: 20px;
 }
 
 .woocommerce .products.list .product .product-wrap {

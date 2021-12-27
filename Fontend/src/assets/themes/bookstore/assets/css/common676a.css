@@ -616,7 +616,8 @@ h1,
 
 h2,
 .h2 {
-    font-size: 30px
+    font-size: 30px;
+    width: 200px;
 }
 
 h3,

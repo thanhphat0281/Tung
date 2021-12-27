@@ -95,3 +95,8 @@ body {
 .loginBtn--google:focus {
     background: #E74B37;
 }
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

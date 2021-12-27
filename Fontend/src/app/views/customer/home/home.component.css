@@ -12,7 +12,7 @@
 @import '../../../../assets/themes/bookstore/assets/css/styles676a.css'; 
 @import '../../../../assets/themes/bookstore/includes/wp-social-widget/assets/css/social-icons8a54.css';
 @import '../../../../assets/plugins1/font-awesome/css/font-awesome.min.css';
-@import '../../../../assets/plugins1/bootstrap4/css/bootstrap.min.css';
+/* @import '../../../../assets/plugins1/bootstrap4/css/bootstrap.min.css'; */
 @import '../../../../assets/plugins1/owl-carousel/assets/owl.carousel.css';
 @import '../../../../assets/plugins1/slick/slick/slick.css';
 @import '../../../../assets/plugins1/lightGallery-master/dist/css/lightgallery.min.css';
@@ -22,6 +22,7 @@
 @import '../../../../assets/plugins1/chikery-icon/style.css';
 @import '../../../../assets/css/styles.css';
 @import 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDDI2uBLFfqS-BRD0Gqmu7ugSigtD0sR4U;region=GB';
+@import 'https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css';
 
 
 .yith-wcwl-add-button a:before {

@@ -532,6 +532,35 @@
     }
 </style> -->
 
+<!-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+      <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+      <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="../../assets/img1/banner/home-3/1.jpg" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="../../assets/img1/banner/home-3/2.jpg" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="../../assets/img1/banner/home-3/3.jpg" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </a>
+</div> -->
+
+
+
 <div id="homepage-4">
     <!-- <div id="hompage-2">
         <div class="ps-home-banner bg--cover" data-background="../../../../assets/img1/bg/home-2/home-banner.jpg">
@@ -561,6 +590,7 @@
         </div>        
     </div>
      -->
+     
      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <ol class="carousel-indicators">
           <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
@@ -580,11 +610,11 @@
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden"></span>
+          <span class="visually-hidden">Previous</span>
         </a>
         <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden"></span>
+          <span class="visually-hidden">Next</span>
         </a>
     </div>
     <div id="bks-products-slider" class="vc_row wpb_row vc_row-fluid vc_custom_1454597513538">
@@ -664,13 +694,13 @@
                                                 </h4>
 
                                                 <span class="price">
-                                                    <ins>
+                                                    <small style="font-size: 16px !important;">
                                                         <span class="woocommerce-Price-amount amount">
                                                             {{cakes.priceCake*(100-cakes.sale)/100 | currency:"VND"}}
                                                         </span>
-                                                    </ins>
+                                                    </small>
 
-                                                    <del style="font-size: 12px">
+                                                    <del style="font-size: 16px">
                                                         <span class="woocommerce-Price-amount amount">
                                                             {{cakes.priceCake | currency:"VND"}}
                                                         </span>
@@ -683,12 +713,12 @@
                                                     </div>
                                                 </h4>
 
-                                                <span class="price">
-                                                    <ins>
+                                                <span class="price" style="font-size: 20px !important;">
+                                                    <small>
                                                         <span class="woocommerce-Price-amount amount">
                                                             {{cakes.priceCake | currency:"VND"}}
                                                         </span>
-                                                    </ins>
+                                                    </small>
                                                 </span>
                                             </div>
 
