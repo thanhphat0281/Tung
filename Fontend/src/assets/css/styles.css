@@ -6591,7 +6591,8 @@ textarea.form-control {
     max-width: 66.666666%;
     background-color: #21202d; }
   .ps-home-menu-of-day .ps-section__right {
-    max-width: 33.33333%; }
+    max-width: 33.33333%;
+  background-image: url(../img1/bg/home-1/home-menu-of-day.jpg); }
   @media (max-width: 1680px) {
     .ps-home-menu-of-day .ps-section__left {
       padding: 75px 100px; } }

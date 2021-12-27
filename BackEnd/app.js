@@ -58,7 +58,8 @@ app.use(bodyParser.json({ limit: '10mb', extended: true }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/CakeStore',{ useNewUrlParser: true });
+//mongoose.connect('mongosh "mongodb+srv://cluster0.owcux.mongodb.net/myFirstDatabase" --username daosontung',{ useNewUrlParser: true });
+mongoose.connect('mongodb+srv://user1:Hang12071997@cluster0.owcux.mongodb.net/CakeStore?authSource=admin&replicaSet=atlas-igb1ef-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true',{ useNewUrlParser: true });
 var port =process.env.PORT || 3000;
 
 var passport = require('passport');

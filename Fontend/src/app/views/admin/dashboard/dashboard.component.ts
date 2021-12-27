@@ -94,7 +94,7 @@ export class DashboardComponent implements OnInit {
   TotalPriceByMonth = []
   TotalCakeByMonth = []
   TotalPriceOnEachMonth(){
-    this.totalMonth.yearCheck = "2020"
+    this.totalMonth.yearCheck = "2021"
     this.statisticService.TotalPriceOnEachMonth(this.totalMonth).subscribe(res => {
       // this.TotalPriceByMonth = 
       console.log("res: "+res)

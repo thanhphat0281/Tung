@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CakeService } from '../../../app-services/cake-service/cake.service';
 import { Cake } from '../../../app-services/cake-service/cake.model';
+import { CategoryService } from '../../../app-services/category-service/category.service';
 import { Category } from '../../../app-services/category-service/category.model';
+import { CakeFiter } from '../../../app-services/cake-service/cakefilter.model';
 import { CartCakeService } from 'src/app/app-services/cartCake-service/cartCake.service';
 import { CartCake } from 'src/app/app-services/cartCake-service/cartCake.model';
 import { Point } from 'src/app/app-services/point-service/point.model';
@@ -30,7 +32,7 @@ export class HomeComponent implements OnInit {
 	customOptions: any
 	constructor(private _router: Router, private cakeService: CakeService,private authService: AuthenticateService,
 		private _cartCakeDBService: CartCakeService, private _pointService: PointService,private cartCakeService: CartCakeService
-		, private _bestService: BestService,private _recommendSyS:Recommend,private _favoriteService:FavoriteService,private _promotion:PromotionService) {
+		,private cakeCategoryService: CategoryService, private _bestService: BestService,private _recommendSyS:Recommend,private _favoriteService:FavoriteService,private _promotion:PromotionService) {
 
 	}
 	//chứa thông tin giỏ hàng
@@ -45,7 +47,10 @@ export class HomeComponent implements OnInit {
 	isLoggedIn = false
 	role: string = ''
 	isCustomer = false
-
+	cakeFilter: CakeFiter = new CakeFiter();
+	//loai banh
+	cakesCategory: []
+	category_id: string;
 	//recommend
 	bestCakeList: Cake = new Cake;
 	bestCategoryList: Category = new Category;
@@ -59,7 +64,7 @@ export class HomeComponent implements OnInit {
 		this.getAllFavoriteByUserId();
 		$('.searchHeader').attr('style', 'font-size: 1.6rem !important');
 		this.script_Frontend();
-		this.refreshCakeList();
+		
 		//this.refreshCartCakeList();
 		this.getTotalCountAndPrice();
 		this.get3Promotion();
@@ -93,7 +98,15 @@ export class HomeComponent implements OnInit {
 			this.accountSocial = JSON.parse(this.authService.getAccount())
 			this.RecommendByUser();
 		  });
+		  
+		  //this.category_id = localStorage.getItem('category_id');
+		  this.getCakeByCategory('5fe5a55531a1704d7086c60f');
+		  this.refreshCategoryList();
+		  this.refreshCakeList();
 	}
+
+	startPageCategories: Number;
+  	paginationLimitCategories: Number;
 	//recommend
 	theloai1:any
 	theloai2:any
@@ -259,7 +272,13 @@ export class HomeComponent implements OnInit {
 		var n2 = n.replace(/\d\d\d(?!$)/g, "$&,");
 		return n2.split('').reverse().join('') + 'VNĐ';
 	}
-
+	showCategory(id: String) {
+		var category: any;
+		this.cakeCategoryService.getCategoryById(id).subscribe((res) => {
+		  this.cakeCategoryService.categories = res as Category[];
+		  category = res;
+		});
+	  }
 	goToCategory(id) {
 		return this._router.navigate(['/rountlv2/category/' + `/${id}`])
 	  }
@@ -288,6 +307,11 @@ export class HomeComponent implements OnInit {
 			this.cakeService.cake = res as Cake[];
 		});
 	}
+	refreshCategoryList() {
+		this.cakeCategoryService.getCategoryList().subscribe((res) => {
+		  this.cakeCategoryService.categories = res as Category[];
+		 	});
+	  }
 	refreshCartCakeList() {
 		this.cartCakeService.getCartCakeList().subscribe((res) => {
 			this.cartCakeService.cartCake = res as CartCake[];
@@ -535,14 +559,14 @@ export class HomeComponent implements OnInit {
 	goToCartCake(){
 		return this._router.navigate(['/cartCake']);
 	}
-	CakeByCategory:any
+	CakeByCategory: any;
 	getCakeByCategory(idCategory){
 		this.cakeService.getCakeByCategoryId(idCategory)
 		.subscribe(resCategoryData => {
-
 		  this.CakeByCategory = resCategoryData as Cake[];
-
+		  console.log(this.CakeByCategory);
 		});
+		this.refreshCakeList();
   }
 
   goToHome(){

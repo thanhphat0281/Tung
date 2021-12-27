@@ -49,8 +49,8 @@ router.post('/signup', function(req, res) {
                     
                             // true for 465, false for other ports
                             auth: {
-                                user: 'bookstoreute@gmail.com', // generated ethereal user
-                                pass: 'mjzailslagceutte' // generated ethereal password
+                                user: 'bakeryute@gmail.com', // generated ethereal user
+                                pass: 'rqwufehgnrffjjfa' // generated ethereal password
                             },
                             tls: {
                                 rejectUnauthorized: false
@@ -59,7 +59,7 @@ router.post('/signup', function(req, res) {
                     
                         // setup email data with unicode symbols
                         var mailOptions = {
-                            from: 'bookstoreute@gmail.com', // sender address
+                            from: 'bakeryute@gmail.com', // sender address
                             to: inserteduser.email, // list of receivers
                             subject: 'Confirm Your Email', // Subject line
                             text: 'Hello world?', // plain text body
