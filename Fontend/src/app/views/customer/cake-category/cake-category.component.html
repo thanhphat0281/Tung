@@ -314,7 +314,7 @@ js-comp-ver-4.9.2 vc_responsive ">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header border-bottom-0">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color: black;font-size: 15px;">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: black;font-size: 15px;text-align: left !important; width: 720px;">
                         <b>Bánh <span style="color: #FA58F4;">{{addACake}}</span> đã được thêm vào giỏ hàng của bạn</b>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -346,12 +346,12 @@ js-comp-ver-4.9.2 vc_responsive ">
                     <h4>Có thể bạn sẽ thích</h4>
                     <div class="modal-footer border-top-0 d-flex justify-content-between" id="scroll">
                         <div class="row">
-                            <div class="col-12 col-md-6 col-lg-3 product type-product
+                            <div class="col-12 col-md-6 col-lg-4 product type-product
                             status-publish has-post-thumbnail product_cat-budgeting-and-finance 
                             product_cat-creative-thinking product_cat-personal-finance product_cat-romance last
                              instock sale featured shipping-taxable purchasable product-type-simple" *ngFor="let item of cakes  |
-                            paginate: { id:'2',itemsPerPage: 4,currentPage: p }">
-                                <div class="product-wrap" style="height: 270px;">
+                            paginate: { id:'2',itemsPerPage: 3,currentPage: p }">
+                                <div class="product-wrap" style="height: 370px;width: 240px;">
                                     <span *ngIf="item.sale!=0" class="on-sale">-{{item.sale}}%</span>
                                     <div class="product-image">
                                         <div class="catalog-image">
@@ -359,7 +359,7 @@ js-comp-ver-4.9.2 vc_responsive ">
                                                 style="background-color: transparent;border-color: transparent;">
                                                 <img width="207" height="265" src="{{item.imgCake}}"
                                                     class="attachment-cakestore_product_thumb size-cakestore_product_thumb wp-post-image"
-                                                    alt="cake6" sizes="(max-width: 207px) 100vw, 207px" />
+                                                    alt="cake6" />
                                                 <div class="button yith-wcqv-button" data-product_id="78">
                                                     <i class="fa fa-search"></i>
                                                 </div>
@@ -393,13 +393,13 @@ js-comp-ver-4.9.2 vc_responsive ">
                                             <div id="OverFlowNameCake" href="cakeDetail">{{item.nameCake}}</div>
                                         </h4>
                                         <span class="price">
-                                            <ins>
+                                            <small style="font-size: 14px;">
                                                 <span class="woocommerce-Price-amount amount">
                                                     {{item.priceCake*(100-item.sale)/100 | currency:"VND"}}
                                                 </span>
-                                            </ins>
+                                            </small>
 
-                                            <del style="font-size: 12px">
+                                            <del style="font-size: 14px;">
                                                 <span class="woocommerce-Price-amount amount">
                                                     {{item.priceCake | currency:"VND"}}
                                                 </span>
@@ -412,11 +412,11 @@ js-comp-ver-4.9.2 vc_responsive ">
                                             <div id="OverFlowNameCake" href="cakeDetail">{{item.nameCake}}</div>
                                         </h4>
                                         <span class="price">
-                                            <ins>
+                                            <small style="font-size: 14px;">
                                                 <span class="woocommerce-Price-amount amount">
                                                     {{item.priceCake | currency:"VND"}}
                                                 </span>
-                                            </ins>
+                                            </small>
                                         </span>
                                     </div>
                                     <!-- end product-content -->
@@ -473,11 +473,13 @@ js-comp-ver-4.9.2 vc_responsive ">
         border-radius: 0px;
     }
 
+    
+
+
     .size-cakestore_product_thumb {
         width: 200px !important;
-        height: 300px !important;
+        height: 250px !important;
     }
-
     .add-to-cart-btn {
         background: #079992 !important;
     }

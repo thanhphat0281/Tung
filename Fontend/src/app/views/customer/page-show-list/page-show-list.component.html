@@ -199,14 +199,14 @@ js-comp-ver-4.9.2 vc_responsive ">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header border-bottom-0">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color: black;font-size: 15px;">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: black;font-size: 15px;text-align: left !important; width: 720px;">
                         <b>Sản Phẩm <span style="color: #FA58F4;">{{addACake}}</span> đã được thêm vào giỏ hàng của
                             bạn</b>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        
                     </h5>
-
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
 
@@ -315,12 +315,12 @@ js-comp-ver-4.9.2 vc_responsive ">
                     </div> -->
                     <div class="modal-footer border-top-0 d-flex justify-content-between" id="scroll">
                         <div class="row">
-                            <div class="col-12 col-md-6 col-lg-3 product type-product
+                            <div class="col-12 col-md-6 col-lg-4 product type-product
                             status-publish has-post-thumbnail product_cat-budgeting-and-finance
                             product_cat-creative-thinking product_cat-personal-finance product_cat-romance last
                              instock sale featured shipping-taxable purchasable product-type-simple" *ngFor="let item of cakes  |
-                            paginate: { id: '2',itemsPerPage: 4,currentPage: p1 }">
-                                <div class="product-wrap" >
+                            paginate: { id: '2',itemsPerPage: 3,currentPage: p1 }">
+                                <div class="product-wrap" style="height: 370px;width: 240px;">
                                     <span *ngIf="item.sale!=0" class="on-sale">-{{item.sale}}%</span>
                                     <div class="product-image">
                                         <div class="catalog-image">
@@ -361,13 +361,13 @@ js-comp-ver-4.9.2 vc_responsive ">
                                             <div id="OverFlowNameCake" href="cakeDetail">{{item.nameCake}}</div>
                                         </h4>
                                         <span class="price">
-                                            <ins>
+                                            <small style="font-size: 14px;">
                                                 <span class="woocommerce-Price-amount amount">
                                                     {{item.priceCake*(100-item.sale)/100 | currency:"VND"}}
                                                 </span>
-                                            </ins>
+                                            </small>
 
-                                            <del style="font-size: 12px">
+                                            <del style="font-size: 14px;">
                                                 <span class="woocommerce-Price-amount amount">
                                                     {{item.priceCake | currency:"VND"}}
                                                 </span>
@@ -380,11 +380,11 @@ js-comp-ver-4.9.2 vc_responsive ">
                                             <div id="OverFlowNameCake" href="cakeDetail">{{item.nameCake}}</div>
                                         </h4>
                                         <span class="price">
-                                            <ins>
+                                            <small style="font-size: 14px;">
                                                 <span class="woocommerce-Price-amount amount">
                                                     {{item.priceCake | currency:"VND"}}
                                                 </span>
-                                            </ins>
+                                            </small>
                                         </span>
                                     </div>
                                     <!-- end product-content -->
@@ -393,9 +393,10 @@ js-comp-ver-4.9.2 vc_responsive ">
                             </div>
 
                         </div>
-                        <div>
-                            <pagination-controls id="2" (pageChange)="p1 = $event"></pagination-controls>
-                        </div>
+                        
+                    </div>
+                    <div>
+                        <pagination-controls id="2" (pageChange)="p1 = $event"></pagination-controls>
                     </div>
                 </div>
             </div>

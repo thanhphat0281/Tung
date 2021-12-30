@@ -180,7 +180,7 @@
 
     .btn-primary,
     #back-to-top .btn {
-        background-color: #079992 !important;
+        background-color: #e7500a !important;
         /* border-color: #FBEFE2 !important; */
         color: #ffffff !important;
     }
@@ -192,8 +192,8 @@
     #back-to-top .btn:hover,
     #back-to-top .btn:active,
     #back-to-top .btn:focus {
-        background-color: #079992 !important;
-        border-color: #079992;
+        background-color: #e7500a !important;
+        border-color: #e7500a;
         color: #ffffff !important;
     }
 
@@ -617,6 +617,10 @@
           <span class="visually-hidden">Next</span>
         </a>
     </div>
+
+
+
+    
     <div id="bks-products-slider" class="vc_row wpb_row vc_row-fluid vc_custom_1454597513538">
 
         
@@ -856,7 +860,7 @@
             <div class="ps-section__content">
                 <div class="row">
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6"
-                        *ngFor="let cakes of cakeService.cake | paginate: {itemsPerPage: 6,currentPage: p }">
+                        *ngFor="let cakes of cakeService.cake | paginate: {itemsPerPage: 6,currentPage: pp }">
                         <div class="ps-product">
                             <div class="ps-product__thumbnail"><img src={{cakes.imgCake}} /><a
                                     class="ps-product__overlay" (click)="detailCake(cakes)"></a><span
@@ -898,7 +902,7 @@
                     
                 </div>
                 <div class="ps-pagination">
-                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    <pagination-controls (pageChange)="pp = $event"></pagination-controls>
                 </div>
             </div>
         </div>
@@ -916,7 +920,7 @@
     </div>
 
     <div id="back-to-top" data-spy="affix" data-offset-top="300" class="back-to-top hidden-xs hidden-sm affix">
-        <button id="scrollToTopButton" class="btn btn-primary" title="Back to Top"><i
+        <button id="scrollToTopButton" class="btn btn-scroll " title="Back to Top"><i
                 class="fa fa-arrow-up"></i></button>
     </div>
 
@@ -926,13 +930,13 @@
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header border-bottom-0">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color: black;font-size: 15px;">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: black;font-size: 15px;text-align: left !important; width: 720px;">
                         <b>Sản phẩm <span style="color: black;">{{addACake}}</span> đã được Chọn Mua hàng của bạn</b>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        
                     </h5>
-
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
 
@@ -958,12 +962,12 @@
                     <h4>Có thể bạn sẽ thích</h4>
                     <div class="modal-footer border-top-0 d-flex justify-content-between" id="scroll">
                         <div class="row">
-                            <div class="col-12 col-md-6 col-lg-3 product type-product
+                            <div class="col-12 col-md-6 col-lg-4 product type-product
                         status-publish has-post-thumbnail product_cat-budgeting-and-finance
                         product_cat-creative-thinking product_cat-personal-finance product_cat-romance last
                          instock sale featured shipping-taxable purchasable product-type-simple" *ngFor="let item of CakeByCategory  |
-                        paginate: { itemsPerPage: 4,currentPage: 0 }">
-                                <div class="product-wrap">    
+                        paginate: { id:'2',itemsPerPage: 3,currentPage: p }">
+                                <div class="product-wrap" style="height: 370px;width: 240px;">    
                                     <span *ngIf="item.sale!=0" class="on-sale">-{{item.sale}}%</span>
                                     <div class="product-image">
                                         <div class="catalog-image">
@@ -971,7 +975,7 @@
                                                 style="background-color: transparent;border-color: transparent;">
                                                 <img width="250px !important " height="250px ! important" src="{{item.imgCake}}"
                                                     class="attachment-cakestore_product_thumb size-cakestore_product_thumb wp-post-image"
-                                                    alt="cake6" sizes="(max-width: 250px) 100vw, 250px ! important" />
+                                                    alt="cake6"  />
                                                 <div class="button yith-wcqv-button" data-product_id="78">
                                                     <i class="fa fa-search"></i>
                                                 </div>
@@ -1003,13 +1007,13 @@
                                             <div id="OverFlowNameCake" href="cakeDetail">{{item.nameCake}}</div>
                                         </h4>
                                         <span class="price">
-                                            <ins>
+                                            <small style="font-size: 14px;">
                                                 <span class="woocommerce-Price-amount amount">
                                                     {{item.priceCake*(100-item.sale)/100 | currency:"VND"}}
                                                 </span>
-                                            </ins>
+                                            </small>
 
-                                            <del style="font-size: 12px">
+                                            <del style="font-size: 14px">
                                                 <span class="woocommerce-Price-amount amount">
                                                     {{item.priceCake | currency:"VND"}}
                                                 </span>
@@ -1021,25 +1025,25 @@
                                         <h4 class="product_title">
                                             <div id="OverFlowNameCake" href="cakeDetail">{{item.nameCake}}</div>
                                         </h4>
-                                        <span class="price">
-                                            <ins>
+                                        <span class="price" >
+                                            <small style="font-size: 14px;">
                                                 <span class="woocommerce-Price-amount amount">
                                                     {{item.priceCake | currency:"VND"}}
                                                 </span>
-                                            </ins>
+                                            </small>
                                         </span>
                                     </div>
 
                                 </div>
 
                             </div>
-                            <div>
-                                <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                            </div>
+                            
                         </div>
-                       
+                        
                     </div>
-
+                    <div>
+                        <pagination-controls id='2' (pageChange)="p = $event"></pagination-controls>
+                    </div>
                 </div>
             </div>
         </div>

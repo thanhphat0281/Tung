@@ -130,17 +130,20 @@
 
 #OverFlowNameCake {
     width: auto;
-    height: 16px;
+    height: 50px;
     overflow: hidden;
     cursor: pointer;
     text-align: center;
     padding: 0px 10px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #OverFlowNameCake:hover {
-    height: auto;
+    /* height: auto; */
     overflow: visible;
     color: #EE5A24;
 }
@@ -156,6 +159,16 @@
     overflow: visible;
     
 }
+
+
+.row {
+  width: 100%;
+  box-sizing: border-box;
+  margin-right: 5px;
+  display: flex;
+  justify-content : center;
+}
+
 .img-cake {
     width: 200px !important;
     height: 300px !important;

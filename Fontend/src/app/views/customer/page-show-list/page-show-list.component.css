@@ -293,8 +293,8 @@ body.boxed-layout {
 
 .btn-primary,
 #back-to-top .btn {
-    background-color: #FBEFE2 !important;
-    border-color: #FBEFE2 !important;
+    background-color: #e7500a !important;
+    border-color: #e7500a !important;
     color: #ffffff !important;
 }
 
@@ -305,8 +305,8 @@ body.boxed-layout {
 #back-to-top .btn:hover,
 #back-to-top .btn:active,
 #back-to-top .btn:focus {
-    background-color: #229955 !important;
-    border-color: #229955;
+    background-color: #e7500a !important;
+    border-color: #e7500a;
     color: #ffffff !important;
 }
 
@@ -352,7 +352,7 @@ div.product .summary .yith-wcwl-add-to-wishlist a:hover,
 .yith-wcwl-wishlistaddedbrowse.show,
 .yith-wcwl-wishlistexistsbrowse.show,
 .catalog-image .yith-wcqv-button {
-    background-color: #079992 !important;
+    background-color: #e7500a !important;
     color: #ffffff !important;
 }
 
@@ -578,4 +578,17 @@ a.add_to_wishlist.button.alt {
     height: auto;
     overflow: visible;
     color:#7f462c;
+}
+
+.row {
+    width: 100%;
+    box-sizing: border-box;
+    margin-right: 5px;
+    display: flex;
+    justify-content : center;
+  }
+
+  .size-cakestore_product_thumb {
+    width: 200px !important;
+    height: 250px !important;
 }
