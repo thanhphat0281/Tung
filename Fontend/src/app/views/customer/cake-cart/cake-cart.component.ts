@@ -8,7 +8,7 @@ import { DiscountCodeService } from 'src/app/app-services/discountCode-Service/d
 import { DiscountCode } from 'src/app/app-services/discountCode-Service/discountCode.model';
 import { CakeService } from 'src/app/app-services/cake-service/cake.service';
 // ES6 Modules or TypeScript
-import Swal from 'sweetalert';
+import Swal from 'sweetalert2';
 //import Swal from 'sweetalert';
 import { truncateSync } from 'fs';
 declare var $: any;
@@ -209,16 +209,12 @@ export class CakeCartComponent implements OnInit {
   }
   // Delete Cart Cake
   deleteCartCake(id) {
-    Swal({
+    Swal.fire({
       text: "Bạn có chắc muốn xóa sản phẩm này trong giỏ hàng ?",
       icon: 'warning',
-      buttons:  {
-        cancel: true,
-        confirm: {
-         value:"OK",
-         closeModal: true
-        }
-      }
+      showCancelButton: true,  
+      confirmButtonText: 'Ok',  
+      cancelButtonText: 'Cancel'
     })
     .then((willDelete) => {
         if(willDelete){
@@ -229,7 +225,7 @@ export class CakeCartComponent implements OnInit {
               break;
             }
           }
-          Swal({
+          Swal.fire({
             title: "Đã xóa xong!",
             text: "Sản Phẩm này đã được xóa trong giỏ hàng.",
             icon: 'success'

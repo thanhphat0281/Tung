@@ -5,7 +5,7 @@ import { UserService } from 'src/app/app-services/user-service/user.service';
 import { Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import Swal from 'sweetalert'
+import Swal from 'sweetalert2'
 import { PromotionService } from 'src/app/app-services/promotion-service/promotion.service';
 @Component({
   selector: 'app-admin-manage-event',
@@ -60,16 +60,12 @@ export class AdminManageEventComponent implements OnInit {
   alertSuccess: boolean = false;
   alertMessage: string = "";
   deleteCategoryById(_id: string) {
-    Swal({
+    Swal.fire({
       text: "Bạn có chắc muốn xóa sự kiện này không?",
       icon: 'warning',
-      buttons: {
-        cancel: true,
-        confirm: {
-          value: "OK",
-          closeModal: true
-        }
-      }
+      showCancelButton: true,  
+      confirmButtonText: 'Ok',  
+      cancelButtonText: 'Cancel'
     })
       .then((willDelete) => {
         if (willDelete) {
@@ -86,7 +82,7 @@ export class AdminManageEventComponent implements OnInit {
             },
             error => console.log(error)
           )
-          Swal({
+          Swal.fire({
             title: "Đã xóa xong!",
             text: "Sự kiện này đã được xóa.",
             icon: 'success'

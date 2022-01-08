@@ -7,7 +7,7 @@ import { AuthorService } from '../../../../app-services/author-service/author.se
 import { Promotion } from '../../../../app-services/promotion-service/promotion.model';
 import { SeriService } from '../../../../app-services/seri-service/seri.service';
 import { PromotionService } from 'src/app/app-services/promotion-service/promotion.service';
-import Swal from 'sweetalert'
+import Swal from 'sweetalert2'
 declare var $: any;
 @Component({
   selector: 'app-insert-event',
@@ -93,15 +93,12 @@ export class InsertEventComponent implements OnInit {
       if(form.value.listCakeIn!=null){  form.value.listCakeIn = form.value.listCakeIn.split(",")}
         this.promotionService.postPromotion(form.value).subscribe(
         data => {
-          Swal({
+          Swal.fire({
             text: "Thêm thông tin sự kiện thành công",
             icon: 'success',
-            buttons: {
-              confirm: {
-                value: "OK",
-                closeModal: true
-              }
-            }
+            showCancelButton: true,  
+      confirmButtonText: 'Ok',  
+      
           }) 
           this.promotion = data as Promotion
           this.resetForm()

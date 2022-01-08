@@ -5,7 +5,7 @@ import { UserService } from 'src/app/app-services/user-service/user.service';
 import { Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import Swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-manage-user',
@@ -57,16 +57,12 @@ export class AdminManageUserComponent implements OnInit {
   alertSuccess: boolean = false;
   alertMessage: string = "";
   deleteUserById(_id: string) {
-    Swal({
+    Swal.fire({
       text: "Bạn có chắc muốn xóa người dùng này không?",
       icon: 'warning',
-      buttons: {
-        cancel: true,
-        confirm: {
-          value: "OK",
-          closeModal: true
-        }
-      }
+      showCancelButton: true,  
+      confirmButtonText: 'Ok',  
+      cancelButtonText: 'Cancel'
     })
       .then((willDelete) => {
         if (willDelete) {
@@ -76,7 +72,7 @@ export class AdminManageUserComponent implements OnInit {
             },
             error => console.log(error)
           )
-          Swal({
+          Swal.fire({
             title: "Đã xóa xong!",
             text: "Người dùng này đã được xóa.",
             icon: 'success'

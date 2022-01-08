@@ -4,7 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import Swal from 'sweetalert'
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-manage-wheel',
   templateUrl: './manage-wheel.component.html',
@@ -31,42 +31,34 @@ export class ManageWheelComponent implements OnInit {
   }
   deleteSegmentById(seg) {
    if(seg.isActive){
-    Swal({
+    Swal.fire({
       text: "Phải Có Một Vòng Quay Được Hoạt Động,Nên Hiện Tại Chưa Thể Xóa",
       icon: 'warning',
-      buttons: {
-      
-        confirm: {
-          value: "OK",
-          closeModal: true
-        }
-      }
+      showCancelButton: true,  
+      confirmButtonText: 'Ok',  
+     
     })
    }else{
-    Swal({
+    Swal.fire({
       text: "Bạn có chắc muốn xóa vòng quay này không?",
       icon: 'warning',
-      buttons: {
-        cancel: true,
-        confirm: {
-          value: "OK",
-          closeModal: true
-        }
-      }
+      showCancelButton: true,  
+      confirmButtonText: 'Ok',  
+      cancelButtonText: 'Cancel'
     })
       .then((willDelete) => {
         if (willDelete) {
           this.segmentService.deleteSegment(seg._id).subscribe(
             data => {
               if(data == 'Successfully deleted'){
-                Swal({
+                Swal.fire({
                   title: "Đã xóa xong!",
                   text: "Vòng quay này đã được xóa.",
                   icon: 'success'
                 });
                 this.ngOnInit();
               }else{
-                Swal({
+                Swal.fire({
                   title: "Có lỗi",
                   text: "Vòng quay này không thể xóa.",
                   icon: 'error'
@@ -93,16 +85,12 @@ export class ManageWheelComponent implements OnInit {
     return this._router.navigate(["/updateWheel" + `/${id}`]);
   }
   checkIsActiveToFalse(id){
-    Swal({
+    Swal.fire({
       text: "Phải Có Một Vòng Quay Được Hoạt Động",
       icon: 'warning',
-      buttons: {
-      
-        confirm: {
-          value: "OK",
-          closeModal: true
-        }
-      }
+      showCancelButton: true,  
+      confirmButtonText: 'Ok',  
+      cancelButtonText: 'Cancel'
     })
     this.ngOnInit()
   }

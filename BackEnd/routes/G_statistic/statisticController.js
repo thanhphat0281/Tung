@@ -69,6 +69,7 @@ async function checkWeek(dateNow, dateCheck) { //theo tuần
 
 //check theo month
 async function checkMonth(yearCheck, monthCheck, dateOrder) {
+    console.log("1")
     let run = (yearCheck, monthCheck, dateOrder) => {
         month = {
             "Jan": 1,
@@ -85,10 +86,11 @@ async function checkMonth(yearCheck, monthCheck, dateOrder) {
             "Dec": 12
         }
         var checkSplit = dateOrder.split(" ");
+        console.log("nam: "+ checkSplit[3])
         if (yearCheck == checkSplit[3]) { //năm =
-
+            console.log("aaa: "+ checkSplit[1])
             if (month[monthCheck] == month[checkSplit[1]]) { //tháng =
-
+                console.log("2")
                 return true;
             }
         }
@@ -154,24 +156,24 @@ router.post('/TotalPriceOnMonth', function(req, res) {
         var totalPriceOnMonth = 0.0
         var yearCheck = req.body.yearCheck
         var monthCheck = req.body.monthCheck
-        var CountBoodBuy = 0
+        var CountCakeBuy = 0
         // today = today.toString().substring(0, 24);
         const orderArray = await getAllOrder(req, res);
         for (var index in orderArray) {
-            if (orderArray[index].status == 'Done' || orderArray[index].paymentOption == 'Online') {
+            if (orderArray[index].status == 'Done' || orderArray[index].paymentOption == 'Online' || orderArray[index].paymentOption == 'MOMO') {
                 if (await checkMonth(yearCheck, monthCheck, orderArray[index].orderDate) == true) {
                     totalPriceOnMonth += orderArray[index].totalPrice;
                     const orderDetailArray = await getOrderDetailByOrderID(orderArray[index]._id)
                     for(let aOrderArray of orderDetailArray)
                     {
-                        CountBoodBuy += aOrderArray["count"]
+                        CountCakeBuy += aOrderArray["count"]
                     }
                 }
                
             }
         }
         const CountUser = await getSosialAccountByOrUserAccountID()
-        res.json({totalPriceOnMonth,CountBoodBuy,CountUser});
+        res.json({totalPriceOnMonth,CountCakeBuy,CountUser});
     }
     run();
 })
@@ -179,23 +181,23 @@ router.get('/TotalPriceOnYear/:year', function(req, res) {
     async function run() {
         var totalPriceOnYear = 0.0
         var yearCheck = req.params.year
-        var CountBoodBuy = 0
+        var CountCakeBuy = 0
         const orderArray = await getAllOrder(req, res);
         for (var index in orderArray) {
-            if (orderArray[index].status == 'Done' || orderArray[index].paymentOption == 'Online') {
+            if (orderArray[index].status == 'Done' || orderArray[index].paymentOption == 'Online'|| orderArray[index].paymentOption == 'MOMO') {
                 if (await checkYear(yearCheck, orderArray[index].orderDate) == true) {
                     totalPriceOnYear += orderArray[index].totalPrice
                     const orderDetailArray = await getOrderDetailByOrderID(orderArray[index]._id)
                     for(let aOrderArray of orderDetailArray)
                     {
-                        CountBoodBuy += aOrderArray["count"]
+                        CountCakeBuy += aOrderArray["count"]
                     }
                 }
             }
         }
         const CountUser = await getSosialAccountByOrUserAccountID()
 
-        res.json({totalPriceOnYear,CountBoodBuy,CountUser});
+        res.json({totalPriceOnYear,CountCakeBuy,CountUser});
     }
     run();
 })
@@ -220,14 +222,15 @@ async function CustomPriceByMonth(Data, month, price, arrayOrderDetails) {
 router.post('/TotalPriceOnEachMonth', function(req, res) {
     async function run() {
         var totalPriceOnMonth = 0.0
-        var yearCheck = req.body.yearCheck
+        var yearCheck = req.body.checkYear
+        console.log("year:" + yearCheck)
         const orderArray = await getAllOrder(req, res);
         let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
         let TotalPriceByEachMonth = []
         for (let i in months) {
             for (var index in orderArray) {
                 const orderDetailArray = await getOrderDetailByOrderID(orderArray[index]._id, res);
-                if (orderArray[index].status == 'Done' ||orderArray[index].paymentOption == 'Online') {
+                if (orderArray[index].status == 'Done' ||orderArray[index].paymentOption == 'Online' ||  orderArray[index].paymentOption == 'MOMO') {
                     if (await checkMonth(yearCheck, months[i], orderArray[index].orderDate) == true) {
                         TotalPriceByEachMonth = await CustomPriceByMonth(TotalPriceByEachMonth, months[i], orderArray[index].totalPrice, orderDetailArray)
                     }

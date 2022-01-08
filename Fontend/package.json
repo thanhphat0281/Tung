@@ -46,6 +46,7 @@
         "rxjs-compat": "^6.5.4",
         "safe-pipe": "^1.0.3",
         "sweetalert": "^2.1.2",
+        "sweetalert2": "^11.3.3",
         "tslib": "^1.10.0",
         "winwheel": "^1.0.1",
         "zone.js": "~0.9.1"

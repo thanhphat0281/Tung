@@ -8,6 +8,7 @@ const puppeteer = require('puppeteer');
 const order = require('../../models/E_payment/order');
 const open = require('open');
 const { url } = require('inspector');
+const { Console } = require('console');
 
 
 const partnerCode = "MOMOXHXV20211219";
@@ -17,16 +18,15 @@ const redirectUrl = "http://localhost:3000/paymentMoMo/returnUrl";
 const ipnUrl = "http://localhost:3000/paymentMoMo/notifyUrl";
 const requestType = "captureWallet"
 const orderInfo = "payment for cake store";
-var responsePage = {};
+
 
 var returnUrl = "http://localhost:4200"
 router.post('/', function (request, response) {
-
     const requestId = partnerCode + new Date().getTime();
-    responsePage[requestId] = { res: response, time: new Date().getTime() }
     const extraData = encodeBase64(JSON.stringify(request.body))
     const orderId = requestId;
     const amount = request.body.totalPrice;
+
     const rawSignature = "accessKey=" + accessKey + "&amount=" + amount + "&extraData=" + extraData + "&ipnUrl=" + ipnUrl + "&orderId=" + orderId + "&orderInfo=" + orderInfo + "&partnerCode=" + partnerCode + "&redirectUrl=" + redirectUrl + "&requestId=" + requestId + "&requestType=" + requestType
 
     const signature = encrypt(rawSignature);
@@ -54,8 +54,9 @@ router.post('/', function (request, response) {
             'Content-Length': Buffer.byteLength(requestBody)
         }
     }
+   
     sendCreate(options, requestBody).then(MomoReturn => {
-        openUrl(MomoReturn.payUrl);
+        response.json(MomoReturn.payUrl)
 
     }).catch(err => { return response.status(500).json(err) })
 
@@ -71,21 +72,18 @@ router.get('/returnUrl', function (req, res) {
         `&orderType=${resultQuery.orderType}&partnerCode=${resultQuery.partnerCode}` +
         `&payType=${resultQuery.payType}&requestId=${resultQuery.requestId}` +
         `&responseTime=${resultQuery.responseTime}&resultCode=${resultQuery.resultCode}&transId=${resultQuery.transId}`
-        
+        console.log(resultQuery)
+        const extradata =  JSON.parse(decodeBase64(resultQuery.extraData))
+        console.log(extradata)
     if (resultQuery.signature === encrypt(rawSignature)) {
         if (req.query.resultCode == 0) {
-            res.status(200).json({ "result": "success" })
-            if (responsePage.hasOwnProperty(resultQuery.requestId)) {
-                responsePage[`${resultQuery.requestId}`].res.status(200).json({ "result": "success" })
-                clearRes(resultQuery.requestId)
+            
+            res.redirect(`http://localhost:4200/payment/${extradata.customerID}?resultCode=${resultQuery.resultCode}`)
 
-            }
+            
         } else {
-            res.status(200).json({ "result": "failure" })
-            if (responsePage.hasOwnProperty(resultQuery.requestId)) {
-                responsePage[`${resultQuery.requestId}`].res.status(200).json({ "result": "failure" })
-                clearRes(resultQuery.requestId)
-            }
+            
+            res.redirect(`http://localhost:4200/payment/${extradata.customerID}?resultCode=${resultQuery.resultCode}`)
         }
     } else {
         res.status(500).json({ "result": "data invalid" })
@@ -106,7 +104,7 @@ function encodeBase64(data) {
     return Buffer.from(data).toString('base64')
 }
 function decodeBase64(data) {
-    return Buffer.from(data, 'base64').toString('ascii')
+    return Buffer.from(data, 'base64').toString('utf8')
 }
 function getQrCode(url) {
     return new Promise(async (resolve, reject) => {

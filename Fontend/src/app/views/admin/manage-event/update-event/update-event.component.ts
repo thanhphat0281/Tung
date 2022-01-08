@@ -11,7 +11,7 @@
   import { SeriService } from '../../../../app-services/seri-service/seri.service';
   import { PromotionService } from 'src/app/app-services/promotion-service/promotion.service';
   declare var $: any;
-  import Swal from 'sweetalert'
+  import Swal from 'sweetalert2'
   @Component({
     selector: 'app-update-event',
     templateUrl: './update-event.component.html',
@@ -114,16 +114,12 @@
     }
   
     onSubmit(form: NgForm) {
-      Swal({
+      Swal.fire({
         text: "Bạn có chắc muốn cập nhật thông tin sự kiện này không ?",
         icon: 'warning',
-        buttons: {
-          cancel: true,
-          confirm: {
-            value: "OK",
-            closeModal: true
-          }
-        }
+        showCancelButton: true,  
+      confirmButtonText: 'Ok',  
+     
       })
         .then((willDelete) => {
           if (willDelete) {
@@ -154,7 +150,7 @@
           error => console.log(error)
         );
       }
-            Swal({
+            Swal.fire({
               title: "Đã cập nhật thành công!",
               text: "Thông tin sự kiện đã được cập nhật.",
               icon: 'success'

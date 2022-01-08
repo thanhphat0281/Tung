@@ -824,7 +824,7 @@
             <div class="ps-block--product-menu ps-tab-root">
               <div class="ps-block__header">            
                 <ul class="ps-tab-list">
-                  <li class="active"><a (click)="getCakeByCategory('5fe5a55531a1704d7086c60f')" href="#tab-menu-1" ><i class="chikery-bk1"></i> Bánh Mì</a></li>
+                  <li class="active"><a (click)="getCakeByCategory('5fe5a55531a1704d7086c60f')" ><i class="chikery-bk1"></i> Bánh Mì</a></li>
                   <li><a (click)="getCakeByCategory('5fe5a9cc31a1704d7086c611')"><i class="chikery-bk2"></i> Bánh Ngọt</a></li>                
                   <li><a (click)="getCakeByCategory('5fd9db675b966409a45c2d5c')"><i class="chikery-bk4"></i> Cookies</a></li>
                 </ul>
@@ -832,11 +832,11 @@
               <div class="ps-tabs">
                 <div class="ps-tab active" id="tab-menu-1">
                   <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12" *ngFor="let cake of CakeByCategory">
-                      <div class="ps-product--horizontal">
-                        <div class="ps-product__thumbnail"><a class="ps-product__overlay" href="product-default.html"></a><img src="{{cake.imgCake}}"></div>
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12" *ngFor="let cake of CakeByCategory; let i = index;">
+                      <div *ngIf="i<6" class="ps-product--horizontal">
+                        <div class="ps-product__thumbnail"><a class="ps-product__overlay" (click)="detailCake(cake)"></a><img src="{{cake.imgCake}}"></div>
                         <div class="ps-product__container">
-                          <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">{{cake.nameCake}}</a>
+                          <div class="ps-product__content"><a class="ps-product__title" (click)="detailCake(cake)">{{cake.nameCake}}</a>
                             <p>{{cake.detailCake}}</p>
                           </div>
                           <div class="ps-product__price"><span>{{cake.priceCake}}</span></div>

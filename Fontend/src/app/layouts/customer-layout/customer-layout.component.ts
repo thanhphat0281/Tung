@@ -7,7 +7,7 @@ import { DiscountCodeService } from 'src/app/app-services/discountCode-Service/d
 import { DiscountCode } from 'src/app/app-services/discountCode-Service/discountCode.model';
 import { Cake } from '../../app-services/cake-service/cake.model';
 import { Category } from '../../app-services/category-service/category.model';
-import swal from 'sweetalert';
+//import swal from 'sweetalert';
 import { UserService } from 'src/app/app-services/user-service/user.service';
 import { AuthenticateService } from 'src/app/app-services/auth-service/authenticate.service';
 import { BestService } from 'src/app/app-services/best-service/best.service';
@@ -16,7 +16,7 @@ import { CategoryService} from '../../app-services/category-service/category.ser
 import { CartCakeService } from 'src/app/app-services/cartCake-service/cartCake.service';
 import { CartCake } from 'src/app/app-services/cartCake-service/cartCake.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import Swal from 'sweetalert';
+import Swal from 'sweetalert2';
 declare var $: any;
 declare let Winwheel: any
 
@@ -128,16 +128,12 @@ export class CustomerLayoutComponent implements OnInit {
   }
   
   deleteCartCake(id) {
-    Swal({
+    Swal.fire({
       text: "Bạn có chắc muốn xóa sản phẩm này trong giỏ hàng ?",
       icon: 'warning',
-      buttons:  {
-        cancel: true,
-        confirm: {
-         value:"OK",
-         closeModal: true
-        }
-      }
+      showCancelButton: true,  
+      confirmButtonText: 'Ok',  
+      cancelButtonText: 'Cancel'
     })
     .then((willDelete) => {
         if(willDelete){
@@ -148,7 +144,7 @@ export class CustomerLayoutComponent implements OnInit {
               break;
             }
           }
-          Swal({
+          Swal.fire({
             title: "Đã xóa xong!",
             text: "Sản Phẩm này đã được xóa trong giỏ hàng.",
             icon: 'success'
@@ -236,15 +232,12 @@ export class CustomerLayoutComponent implements OnInit {
       return this._router.navigate(['/aboutUs/' + `/${this.InputSearch}`]);
     } else
       if (format.test(this.InputSearch)) {
-        swal({
+        Swal.fire({
           text: "Không được chứa ký tự đặc biệt!",
           icon: 'warning',
-          buttons: {
-            confirm: {
-              value: "OK",
-              closeModal: true
-            }
-          }
+          showCancelButton: true,  
+      confirmButtonText: 'Ok',  
+      //cancelButtonText: 'Cancel'
         })
       }
   }

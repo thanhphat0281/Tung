@@ -4,7 +4,7 @@ import { UserService } from 'src/app/app-services/user-service/user.service';
 import { User } from 'src/app/app-services/user-service/user.model';
 import { NgForm } from '@angular/forms';
 import { Location } from '@angular/common';
-import  Swal  from 'sweetalert'
+import  Swal  from 'sweetalert2'
 @Component({
   selector: 'app-admin-profile-edit',
   templateUrl: './admin-profile-edit.component.html',
@@ -41,16 +41,12 @@ export class AdminProfileEditComponent implements OnInit {
   alertSucess: boolean = false
   onSubmit(form: NgForm) {
     let id = this.route.snapshot.paramMap.get('id');
-    Swal({
+    Swal.fire({
       text: "Bạn có chắc muốn cập nhật thông tin không?",
       icon: 'warning',
-      buttons: {
-        cancel: true,
-        confirm: {
-          value: "OK",
-          closeModal: true
-        }
-      }
+      showCancelButton: true,  
+      confirmButtonText: 'Ok',  
+      cancelButtonText: 'Cancel'
     })
       .then((willDelete) => {
         if (willDelete) {
@@ -73,7 +69,7 @@ export class AdminProfileEditComponent implements OnInit {
               error => console.log(error)
              );
           })
-          Swal({
+          Swal.fire({
             title: "Đã cập nhật thành công!",
             text: "Thông tin đã được cập nhật.",
             icon: 'success'

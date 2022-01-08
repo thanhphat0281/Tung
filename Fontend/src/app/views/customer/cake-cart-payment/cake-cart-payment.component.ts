@@ -23,7 +23,7 @@ declare let paypal: any;
 //dataset Recommend
 import { datasetRecommend } from '../../../app-services/recommendSys-service/dataRecommend-service/dataRecommend.model'
 import { DatasetRecommendService } from 'src/app/app-services/recommendSys-service/dataRecommend-service/dataRecommend.service';
-import swal from 'sweetalert';
+import swal from 'sweetalert2';
 import { AuthenticateService } from 'src/app/app-services/auth-service/authenticate.service';
 //promotion
 import { Promotion } from 'src/app/app-services/promotion-service/promotion.model';
@@ -71,6 +71,7 @@ export class CakeCartPaymentComponent implements OnInit {
   paymentLoading = false;
   datasetRecommend: datasetRecommend = new datasetRecommend;
   ngOnInit() {
+    
     this.get3Promotion()
     $('.searchHeader').attr('style', 'font-size: 1.6rem !important');
 
@@ -93,6 +94,7 @@ export class CakeCartPaymentComponent implements OnInit {
     this.getCustomerByID(customer_id);
     console.log(this.CartCake);
     this.paymentLoading = false;
+    this.notifyMOMO()
   }
   // set độ dài của giỏ hàng
   cartCakeLength(CartCake) {
@@ -410,26 +412,43 @@ export class CakeCartPaymentComponent implements OnInit {
   //update discount code
   paymentbyMoMo() {
     this.paymentLoading = true;
-    this.orders.paymentOption = "Momo";
+    this.orders.paymentOption = "MOMO";
     this.orders.customerID = this.customer._id;
     this.now = new Date();
     this.orders.orderDate = this.now.toString().substring(0, 24);
     this.orders.totalPrice = this.TongTien;
     this.orders.discountCode = this.discountCode.discountCode;
     this.orders.feeShip = this.customer.feeShip;
-    this._orderService.postPayMomo(this.orders).subscribe((data:any)=>{
-      if(data.result=="success"){
+    this._orderService.postPayMomo(this.orders).subscribe((data: any) => {
+      location.assign(data);
+
+    })
+  }
+  notifyMOMO() {
+    // this._router.parseUrl.queryParamMap.subscribe((params: any) => console.log(params));
+    console.log(this.route.snapshot.queryParamMap['params'])
+    const param = this.route.snapshot.queryParamMap['params']
+    if(param.resultCode){
+      if (param.resultCode == 0) {
+        this.paymentLoading = true;
+        this.orders.paymentOption = "MOMO";
+        //kiểm tra số lượng sản phẩm trong cửa hàng so với đơn hàng 
         this.CheckBillBeforePay()
-      }else{
-        swal({
+        
+      } 
+      else {
+        swal.fire({
           title: "thanh toán thất bại",
           text: "Vui Lòng thanh toán lại",
           icon: 'warning'
         }).then((willDelete) => {
-          this.ngOnInit();
+          this._router.navigate([`/payment/${this.customer._id}`])
         })
-      }
-    })}
+    }
+    
+      
+    }
+  }
 
   putDiscountCode(discountCode: DiscountCode) {
     this._discountCode.putDiscountCode(discountCode).subscribe(
@@ -466,6 +485,7 @@ export class CakeCartPaymentComponent implements OnInit {
 
 
   }
+
   //Kiểm tra bất đồng bộ và roll back
   listCakeCheck: any
   CheckBillBeforePay() {
@@ -473,7 +493,7 @@ export class CakeCartPaymentComponent implements OnInit {
       if (res == true) {
         this.payCheckOut();
         if (this.orders.paymentOption == "Cash") {
-          swal({
+          swal.fire({
             title: "Đã Đặt Thành Công Đơn Hàng!",
             text: "Cám Ơn Bạn Đã Ủng Hộ Cửa Hàng",
             icon: 'success'
@@ -483,7 +503,17 @@ export class CakeCartPaymentComponent implements OnInit {
         }
         if (this.orders.paymentOption == "Online") {
 
-          swal({
+          swal.fire({
+            title: "Đã Thanh Toán Thành Công Đơn Hàng!",
+            text: "Cám Ơn Bạn Đã Ủng Hộ Cửa Hàng",
+            icon: 'success'
+          }).then((willDelete) => {
+            this._router.navigate(["/homePage"])
+          });
+        }
+        if (this.orders.paymentOption == "MOMO") {
+
+          swal.fire({
             title: "Đã Thanh Toán Thành Công Đơn Hàng!",
             text: "Cám Ơn Bạn Đã Ủng Hộ Cửa Hàng",
             icon: 'success'
@@ -492,7 +522,7 @@ export class CakeCartPaymentComponent implements OnInit {
           });
         }
       } else {
-        swal({
+        swal.fire({
           title: "Đơn Hàng Bạn Đặt Mua Hiện Đã Hết Hàng!",
           text: "Vui Lòng Quay Lại Sau ",
           icon: 'warning'
@@ -557,10 +587,10 @@ export class CakeCartPaymentComponent implements OnInit {
     }
     if (localStorage.getItem('DiscountCode') != null) {
       this.discountCode = JSON.parse(localStorage.getItem('DiscountCode'));
-      this.discountCode.discountCode = this.discountCode.discountCode +this.promotionDiscount[0];
- 
+      this.discountCode.discountCode = this.discountCode.discountCode + this.promotionDiscount[0];
+
     } else {
-      this.discountCode.discountCode = 0+this.promotionDiscount[0];
+      this.discountCode.discountCode = 0 + this.promotionDiscount[0];
     }
   }
 

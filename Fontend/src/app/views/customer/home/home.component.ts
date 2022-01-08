@@ -9,7 +9,7 @@ import { CartCakeService } from 'src/app/app-services/cartCake-service/cartCake.
 import { CartCake } from 'src/app/app-services/cartCake-service/cartCake.model';
 import { Point } from 'src/app/app-services/point-service/point.model';
 import { PointService } from 'src/app/app-services/point-service/point.service';
-import Swal from 'sweetalert';
+import Swal from 'sweetalert2';
 //recommend
 import { BestService } from '../../../app-services/best-service/best.service';
 import { Recommend } from '../../../app-services/recommendSys-service/recommendSys.service';
@@ -415,16 +415,12 @@ export class HomeComponent implements OnInit {
 	}
 	//Xóa hết DB lưu lại theo giỏ hàng
 	mergeCartCakeAndCartCakeDB(cartCakeDB: Object) {
-		Swal({
+		Swal.fire({
 			text: "Giỏ hàng cũ của bạn chưa được thanh toán ,bạn có muốn gộp giỏ hàng cũ vào không ?",
 			icon: 'warning',
-			buttons:  {
-			  cancel: true,
-			  confirm: {
-			   value:"OK",
-			   closeModal: true
-			  }
-			}
+			showCancelButton: true,  
+      confirmButtonText: 'Ok',  
+      cancelButtonText: 'Cancel'
 		  }).then((willDelete) => {
 			if(willDelete){
 
@@ -447,7 +443,7 @@ export class HomeComponent implements OnInit {
 			this.getTotalCountAndPrice();
 		}
 		this.deleteAllCartCakeDBByUserID(this.accountSocial._id);
-		Swal({
+		Swal.fire({
             title: "",
             text: "Gộp giỏ hàng thành công",
             icon: 'success'

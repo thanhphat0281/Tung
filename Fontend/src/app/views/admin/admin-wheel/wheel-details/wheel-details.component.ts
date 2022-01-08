@@ -4,7 +4,7 @@ import { SegmentService } from 'src/app/app-services/segment-service/segment.ser
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Segment } from 'src/app/app-services/segment-service/segment.model';
-import Swal from 'sweetalert'
+import Swal from 'sweetalert2'
 declare var $: any;
 declare let Winwheel: any
 @Component({

@@ -4,7 +4,7 @@ import { SegmentService } from 'src/app/app-services/segment-service/segment.ser
 import { Router } from '@angular/router';
 
 import { Segment } from 'src/app/app-services/segment-service/segment.model';
-import Swal from 'sweetalert'
+import Swal from 'sweetalert2'
 declare var $: any;
 declare let Winwheel: any
 @Component({
@@ -229,16 +229,12 @@ export class InsertWheelComponent implements OnInit {
       if (this.isActive) {
         this.segmentService.checkActiveExistTrue().subscribe(res => {
           if (res == true) {
-            Swal({
+            Swal.fire({
               text: "Chỉ Được Phép Một Vòng Quay Duy Nhất Hoạt Động\n Vòng Quay Đang Hoạt Động Sẽ Tắt \n Và Được Thay Bởi Vòng Quay Này",
               icon: 'warning',
-              buttons: {
-                cancel: true,
-                confirm: {
-                  value: "OK",
-                  closeModal: true
-                }
-              }
+              showCancelButton: true,  
+              confirmButtonText: 'Ok',  
+              cancelButtonText: 'Cancel'
             }).then((willChange) => {
               if (willChange) {
                 //Cập nhật status
@@ -257,15 +253,12 @@ export class InsertWheelComponent implements OnInit {
         this.Insert(seg)
       }
     } else {
-      Swal({
+      Swal.fire({
         text: "Bạn Phải Điền Đầy Đủ Các Trường Để Hoàn Thiện Vòng Quay",
         icon: 'warning',
-        buttons: {
-          confirm: {
-            value: "OK",
-            closeModal: true
-          }
-        }
+        showCancelButton: true,  
+      confirmButtonText: 'Ok',  
+      cancelButtonText: 'Cancel'
       })
     }
 
@@ -274,15 +267,12 @@ export class InsertWheelComponent implements OnInit {
   Insert(seg){
     this.segmentService.postSegment(seg).subscribe(
       data => {
-        Swal({
+        Swal.fire({
           text: "Thêm vòng quay thành công",
           icon: 'success',
-          buttons: {
-            confirm: {
-              value: "OK",
-              closeModal: true
-            }
-          }
+          showCancelButton: true,  
+          confirmButtonText: 'Ok',  
+         
         })
         this._router.navigate(['/manageWheel']);
         this.statusInsert = true;

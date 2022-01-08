@@ -106,7 +106,7 @@ router.post('/', function(req, res) {
             dem_i = dem_i + 1;
         }
         var paymentOption = "";
-        if (req.body.paymentOption == "Online") {
+        if (req.body.paymentOption == "Online" || req.body.paymentOption == "MOMO" ) {
             paymentOption = "Đã Thanh Toán"
         } else {
             paymentOption = "Chưa Thanh Toán"

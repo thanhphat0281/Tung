@@ -18,7 +18,6 @@ router.get('/', function(req, res) {
         });
 });
 
-
 // get a person
 router.get('/:cakeID', function(req, res) {
     cake.findById(req.params.cakeID)
